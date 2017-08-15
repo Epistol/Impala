@@ -5,7 +5,6 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
 
 window.Vue = require('vue');
 
@@ -19,4 +18,33 @@ Vue.component('example', require('./components/Example.vue'));
 
 const app = new Vue({
     el: '#app'
+});
+
+
+$(document).ready(function(){
+
+
+    $( "#autocomplete" ).autocomplete({
+
+        source: function( request, response ) {
+
+            $.ajax({
+                url: "https://api.themoviedb.org/3/search/movie?api_key=72b165171d37b62571511123670a79c2&language=fr&page=1&include_adult=false&",
+                dataType: "jsonp",
+                data: {
+                    query: request.term
+                },
+                success: function(data) {
+
+                    $.each(data, function() {
+                        $.each(this, function(k, item) {
+                            console.log(item['title']);
+                        });
+                    });
+
+                }
+            });
+        },
+        minLength: 3
+    });
 });

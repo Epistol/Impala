@@ -21,12 +21,14 @@
             <div class="column">
                 <div class="field has-addons">
                     <div class="control frontpage">
-                        <input class="input" type="text" placeholder="Find a repository">
+                        <input class="input" id="autocomplete" type="text" placeholder="Find a repository">
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <div id="modifiersDiv"></div>
 
     <div class="section filmsfront">
         <div class="container">

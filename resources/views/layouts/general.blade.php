@@ -7,5 +7,6 @@
 <div class="apps">
     @yield('content')
 </div>
+
 </body>
 </html>
