@@ -29,15 +29,54 @@
     </div>
 
     <div class="section filmsfront">
+        <div class="container">
 
-        @foreach($datas as $post)
-            @foreach($post->results as $film)
-                <p>{{$film->title}}</p>
+            <div class="columns">
+                @php
+                    $i = 0;
+                @endphp
+
+                @foreach($datas as $post)
+                    @foreach($post->results as $film)
+
+                        @php
+                            $i++
+                        @endphp
 
 
-            @endforeach
-        @endforeach
+                        <div class="column">
 
+
+
+                            <div class="card">
+                                <div class="card-image">
+                                    <figure class="image ">
+                                        <img src="https://image.tmdb.org/t/p/w300/{{$film->poster_path}}" alt="Image">
+                                    </figure>
+                                </div>
+                                <div class="card-content">
+                                    <div class="media">
+
+                                        <div class="media-content">
+                                            <p class="title is-4">{{$film->title}}</p>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        @if ($i % 5 == 0  )
+            </div>
+            <div class="columns">
+
+                @endif
+
+                @endforeach
+                @endforeach
+            </div>
+
+        </div>
     </div>
 
 
