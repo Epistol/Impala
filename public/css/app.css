@@ -10107,5 +10107,11 @@ h1.titrelogo {
 
 .filmsfront {
   background: #f5f7f6;
+  color: #332538;
+}
+
+.filmsfront,
+h2.title {
+  color: #e2625b;
 }
 

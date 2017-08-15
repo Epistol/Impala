@@ -31,6 +31,8 @@
     <div class="section filmsfront">
         <div class="container">
 
+            <h2 class="title">Top films de l'année</h2>
+
             <div class="columns">
                 @php
                     $i = 0;
@@ -67,11 +69,13 @@
                             </div>
                         </div>
                         @if ($i % 5 == 0  )
-            </div>
-            <div class="columns">
+                            </div>
+                            <div class="columns">
+                          @endif
 
-                @endif
-
+                                @if ($i > 9 )
+                                    @break
+                                @endif
                 @endforeach
                 @endforeach
             </div>
