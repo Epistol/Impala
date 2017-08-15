@@ -31,12 +31,11 @@
     <div class="section filmsfront">
 
         @foreach($datas as $post)
-
-            <pre>
-                <?php var_dump($post); ?>
-            </pre>
+            @foreach($post->results as $film)
+                <p>{{$film->title}}</p>
 
 
+            @endforeach
         @endforeach
 
     </div>
