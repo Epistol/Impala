@@ -29,7 +29,7 @@ $(document).ready(function(){
         source: function( request, response ) {
 
             $.ajax({
-                url: "https://api.themoviedb.org/3/search/movie?api_key=72b165171d37b62571511123670a79c2&language=fr&page=1&include_adult=false&",
+                url: "/api/filmsrecherche/"+request.term,
                 dataType: "jsonp",
                 data: {
                     query: request.term

@@ -29,9 +29,15 @@ class AccueilController extends Controller
 
         return Tmdb::getMoviesApi()->getPopular(array("language"=>"fr"));
 
+    }
 
+
+    public function recherche($data){
+        return Tmdb::getSearchApi()->searchMovies($data);
 
     }
+
+
     /**
      * Show the form for creating a new resource.
      *
