@@ -34,22 +34,12 @@ $(document).ready(function(){
                 data: {
                     query: request.term
                 },
-                success: function(data) {
 
-                    $.each(data, function() {
-                        $.each(this, function(k, item) {
-                           /* response(item['title']);*/
-                                $("div.test").append(item["title"] + "<br /> ");
 
-                        });
-                    });
 
-                }
             });
         },
         minLength: 3,
-        select: function (event, ui) {
-            log(ui.item ? "Selected: " + ui.item.label : "Nothing selected, input was " + this.value);
-        }
+
     });
 });

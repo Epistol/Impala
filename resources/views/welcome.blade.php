@@ -44,7 +44,7 @@
                 @endphp
 
                 @foreach($datas as $post)
-                    @foreach($post->results as $film)
+                    @foreach($post as $film)
 
                         @php
                             $i++
@@ -58,14 +58,14 @@
                             <div class="card">
                                 <div class="card-image">
                                     <figure class="image ">
-                                        <img src="https://image.tmdb.org/t/p/w300/{{$film->poster_path}}" alt="Image">
+                                        <img src="https://image.tmdb.org/t/p/w300/{{$film["poster_path"]}}" alt="Image">
                                     </figure>
                                 </div>
                                 <div class="card-content">
                                     <div class="media">
 
                                         <div class="media-content">
-                                            <p class="title is-4">{{$film->title}}</p>
+                                            <p class="title is-4">{{$film["title"]}}</p>
                                         </div>
                                     </div>
 

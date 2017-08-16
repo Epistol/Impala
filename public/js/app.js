@@ -107,22 +107,12 @@ $(document).ready(function () {
                 dataType: "jsonp",
                 data: {
                     query: request.term
-                },
-                success: function success(data) {
-
-                    $.each(data, function () {
-                        $.each(this, function (k, item) {
-                            /* response(item['title']);*/
-                            $("div.test").append(item["title"] + "<br /> ");
-                        });
-                    });
                 }
+
             });
         },
-        minLength: 3,
-        select: function select(event, ui) {
-            log(ui.item ? "Selected: " + ui.item.label : "Nothing selected, input was " + this.value);
-        }
+        minLength: 3
+
     });
 });
 

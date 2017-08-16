@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Tmdb\Laravel\Facades\Tmdb;
 
 class AccueilController extends Controller
 {
@@ -13,9 +14,9 @@ class AccueilController extends Controller
      */
     public function index()
     {
-        $topmovie = $this->movies();
+        $topmovie = $this->movies2();
 
-        $datas = array('topmovies' => $topmovie, );
+        $datas = array('topmovies' => $topmovie["results"], );
 
       /*  $response = $this->json('get', '/api/filmsrecherche', ['name' => 'Sally']);
         dd($response);*/
@@ -24,32 +25,11 @@ class AccueilController extends Controller
         return view('welcome')->with('datas', $datas);
     }
 
-    public function movies(){
+    public function movies2(){
+
+        return Tmdb::getMoviesApi()->getPopular();
 
 
-        $curl = curl_init();
-
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://api.themoviedb.org/3/discover/movie?page=1&include_video=false&include_adult=false&sort_by=popularity.desc&language=fr&api_key=72b165171d37b62571511123670a79c2",
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "GET",
-            CURLOPT_POSTFIELDS => "{}",
-        ));
-
-        $response = curl_exec($curl);
-        $err = curl_error($curl);
-
-        curl_close($curl);
-
-        if ($err) {
-            echo "cURL Error #:" . $err;
-        } else {
-            return json_decode($response);
-        }
 
     }
     /**
@@ -61,6 +41,14 @@ class AccueilController extends Controller
     {
         //
     }
+
+
+    function sho2w($id)
+    {
+        // returns information of a movie
+        return Tmdb::getMoviesApi()->getMovie($id);
+    }
+
 
     /**
      * Store a newly created resource in storage.
