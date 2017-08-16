@@ -38,13 +38,18 @@ $(document).ready(function(){
 
                     $.each(data, function() {
                         $.each(this, function(k, item) {
-                            console.log(item['title']);
+                           /* response(item['title']);*/
+                                $("div.test").append(item["title"] + "<br /> ");
+
                         });
                     });
 
                 }
             });
         },
-        minLength: 3
+        minLength: 3,
+        select: function (event, ui) {
+            log(ui.item ? "Selected: " + ui.item.label : "Nothing selected, input was " + this.value);
+        }
     });
 });

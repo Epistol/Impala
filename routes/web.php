@@ -12,3 +12,5 @@
 */
 
 Route::get('/', 'AccueilController@index');
+
+Route::any('/api/filmsrecherche/{term}',    'APIController@index');

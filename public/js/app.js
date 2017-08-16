@@ -60,40 +60,74 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 8);
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
-/******/ ({
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
 
-/***/ 2:
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
-	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
+__webpack_require__(1);
+module.exports = __webpack_require__(8);
 
 
 /***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
 
-/***/ 35:
+
+/**
+ * First we will load all of this project's JavaScript dependencies which
+ * includes Vue and other libraries. It is a great starting point when
+ * building robust, powerful web applications using Vue and Laravel.
+ */
+
+window.Vue = __webpack_require__(2);
+
+/**
+ * Next, we will create a fresh Vue application instance and attach it to
+ * the page. Then, you may begin adding components to this application
+ * or customize the JavaScript scaffolding to fit your unique needs.
+ */
+
+Vue.component('example', __webpack_require__(4));
+
+var app = new Vue({
+    el: '#app'
+});
+
+$(document).ready(function () {
+
+    $("#autocomplete").autocomplete({
+
+        source: function source(request, response) {
+
+            $.ajax({
+                url: "https://api.themoviedb.org/3/search/movie?api_key=72b165171d37b62571511123670a79c2&language=fr&page=1&include_adult=false&",
+                dataType: "jsonp",
+                data: {
+                    query: request.term
+                },
+                success: function success(data) {
+
+                    $.each(data, function () {
+                        $.each(this, function (k, item) {
+                            /* response(item['title']);*/
+                            $("div.test").append(item["title"] + "<br /> ");
+                        });
+                    });
+                }
+            });
+        },
+        minLength: 3,
+        select: function select(event, ui) {
+            log(ui.item ? "Selected: " + ui.item.label : "Nothing selected, input was " + this.value);
+        }
+    });
+});
+
+/***/ }),
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10185,19 +10219,45 @@ Vue$3.compile = compileToFunctions;
 
 module.exports = Vue$3;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
+/* 3 */
+/***/ (function(module, exports) {
 
-/***/ 36:
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(37)(
+var Component = __webpack_require__(5)(
   /* script */
-  __webpack_require__(38),
+  __webpack_require__(6),
   /* template */
-  __webpack_require__(39),
+  __webpack_require__(7),
   /* styles */
   null,
   /* scopeId */
@@ -10229,8 +10289,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-
-/***/ 37:
+/* 5 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -10327,8 +10386,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-
-/***/ 38:
+/* 6 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10357,8 +10415,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-
-/***/ 39:
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -10387,73 +10444,10 @@ if (false) {
 }
 
 /***/ }),
-
-/***/ 40:
+/* 8 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
-/***/ }),
-
-/***/ 8:
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(9);
-module.exports = __webpack_require__(40);
-
-
-/***/ }),
-
-/***/ 9:
-/***/ (function(module, exports, __webpack_require__) {
-
-
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
-window.Vue = __webpack_require__(35);
-
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-Vue.component('example', __webpack_require__(36));
-
-var app = new Vue({
-    el: '#app'
-});
-
-$(document).ready(function () {
-
-    $("#autocomplete").autocomplete({
-
-        source: function source(request, response) {
-
-            $.ajax({
-                url: "https://api.themoviedb.org/3/search/movie?api_key=72b165171d37b62571511123670a79c2&language=fr&page=1&include_adult=false&",
-                dataType: "jsonp",
-                data: {
-                    query: request.term
-                },
-                success: function success(data) {
-
-                    $.each(data, function () {
-                        $.each(this, function (k, item) {
-                            console.log(item['title']);
-                        });
-                    });
-                }
-            });
-        },
-        minLength: 3
-    });
-});
-
 /***/ })
-
-/******/ });
+/******/ ]);

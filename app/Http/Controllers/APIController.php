@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class AccueilController extends Controller
+class APIController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,45 +13,9 @@ class AccueilController extends Controller
      */
     public function index()
     {
-        $topmovie = $this->movies();
-
-        $datas = array('topmovies' => $topmovie, );
-
-      /*  $response = $this->json('get', '/api/filmsrecherche', ['name' => 'Sally']);
-        dd($response);*/
-
-
-        return view('welcome')->with('datas', $datas);
+        return view('api.autocomplete');
     }
 
-    public function movies(){
-
-
-        $curl = curl_init();
-
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://api.themoviedb.org/3/discover/movie?page=1&include_video=false&include_adult=false&sort_by=popularity.desc&language=fr&api_key=72b165171d37b62571511123670a79c2",
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "GET",
-            CURLOPT_POSTFIELDS => "{}",
-        ));
-
-        $response = curl_exec($curl);
-        $err = curl_error($curl);
-
-        curl_close($curl);
-
-        if ($err) {
-            echo "cURL Error #:" . $err;
-        } else {
-            return json_decode($response);
-        }
-
-    }
     /**
      * Show the form for creating a new resource.
      *
