@@ -27,7 +27,7 @@ class AccueilController extends Controller
 
     public function movies2(){
 
-        return Tmdb::getMoviesApi()->getPopular();
+        return Tmdb::getMoviesApi()->getPopular(array("language"=>"fr"));
 
 
 
