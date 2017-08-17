@@ -98,37 +98,12 @@ var app = new Vue({
 
 $(document).ready(function () {
 
-    $("#autocomplete").autocomplete({
-
-        source: function source(request, response) {
-
-            $.ajax({
-
-                url: "/api/filmsrecherche",
-                dataType: "json",
-                success: function success(data2) {
-
-                    $.each(data2.results, function (k, v) {
-                        console.log(v.title);
-                    });
-                },
-                error: function error(data) {
-                    console.log(data);
-                },
-                data: {
-                    query: request.term
-                },
-                select: function select(event, ui) {
-
-                    $(this).val(ui.item.label);
-                    $(this).closest('tr').find("input[id^='drawing_number']").val(ui.item.dwg);
-                    return false; // find the drawing number input on that row
-                }
-
-            });
-        },
-        minLength: 3
-
+    $('#autocomplete').devbridgeAutocomplete({
+        serviceUrl: '/api/filmsrecherche',
+        paramName: 'query',
+        onSelect: function onSelect(suggestion) {
+            alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
+        }
     });
 });
 

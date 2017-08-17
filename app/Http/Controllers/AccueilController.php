@@ -33,8 +33,16 @@ class AccueilController extends Controller
 
 
     public function recherche(Request $data){
-        return Tmdb::getSearchApi()->searchMovies($data['query']);
+        $films = Tmdb::getSearchApi()->searchMovies($data['query']);
+        $resultats = $films['results'];
 
+
+        foreach ($resultats as $film){
+            $contenudonnees[] = ['value' => $film["title"], 'data' => $film["id"]];
+        }
+        $contenu = array('query' => $data['query'], "suggestions" => $contenudonnees) ;
+
+       return $contenu;
 
     }
 
