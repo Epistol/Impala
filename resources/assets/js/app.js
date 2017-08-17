@@ -29,17 +29,33 @@ $(document).ready(function(){
         source: function( request, response ) {
 
             $.ajax({
-                url: "/api/filmsrecherche/"+request.term,
-                dataType: "jsonp",
+
+                url: "/api/filmsrecherche",
+                dataType: "json",
+                success: function(data2){
+
+                    $.each(data2.results, function(k, v) {
+                        console.log(v.title);
+                    });
+                },
+                error: function (data){
+                    console.log(data)
+                },
                 data: {
                     query: request.term
                 },
+                select: function(event, ui)
+                {
 
+                    $(this).val(ui.item.label);
+                    $(this).closest('tr').find("input[id^='drawing_number']").val(ui.item.dwg);
+                    return false; // find the drawing number input on that row
+                }
 
 
             });
         },
-        minLength: 3,
+        minLength: 3
 
     });
 });

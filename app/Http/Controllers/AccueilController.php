@@ -14,7 +14,7 @@ class AccueilController extends Controller
      */
     public function index()
     {
-        $topmovie = $this->movies2();
+        $topmovie = $this->topmovies();
 
         $datas = array('topmovies' => $topmovie["results"], );
 
@@ -25,15 +25,16 @@ class AccueilController extends Controller
         return view('welcome')->with('datas', $datas);
     }
 
-    public function movies2(){
+    public function topmovies(){
 
         return Tmdb::getMoviesApi()->getPopular(array("language"=>"fr"));
 
     }
 
 
-    public function recherche($data){
-        return Tmdb::getSearchApi()->searchMovies($data);
+    public function recherche(Request $data){
+        return Tmdb::getSearchApi()->searchMovies($data['query']);
+
 
     }
 
