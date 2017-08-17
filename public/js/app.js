@@ -102,7 +102,7 @@ $(document).ready(function () {
         serviceUrl: '/api/filmsrecherche',
         paramName: 'query',
         onSelect: function onSelect(suggestion) {
-            alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
+            $("#id_movie").val(suggestion.data); // save selected id to hidden input
         }
     });
 });

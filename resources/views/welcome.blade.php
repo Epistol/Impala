@@ -21,7 +21,12 @@
             <div class="column">
                 <div class="field has-addons">
                     <div class="control frontpage">
-                        <input class="input" id="autocomplete" type="text" placeholder="Find a repository">
+                        <form method="POST" action="{{route('detailssearch')}}">
+                            {{ csrf_field() }}
+                        <input class="input" name="search" id="autocomplete" type="text" placeholder="Find a repository">
+                            <input type="hidden" id="id_movie" name="id_movie" />
+                            <button type="submit" class="button">Button</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -58,7 +63,7 @@
                             <div class="card">
                                 <div class="card-image">
                                     <figure class="image ">
-                                        <img src="https://image.tmdb.org/t/p/w300/{{$film["poster_path"]}}" alt="Image">
+                                        <img src="https://image.tmdb.org/t/p/w500_and_h281_bestv2/{{$film["poster_path"]}}" alt="Image">
                                     </figure>
                                 </div>
                                 <div class="card-content">

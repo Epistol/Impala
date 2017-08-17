@@ -28,7 +28,8 @@ $(document).ready(function() {
         serviceUrl: '/api/filmsrecherche',
         paramName: 'query',
         onSelect: function (suggestion) {
-            alert('You selected: ' + suggestion.value + ', ' + suggestion.data);
+               $("#id_movie").val(suggestion.data); // save selected id to hidden input
+
         }
     });
 

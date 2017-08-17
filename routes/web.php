@@ -14,3 +14,5 @@
 Route::get('/', 'AccueilController@index');
 
 Route::any('/api/filmsrecherche{data?}',    'AccueilController@recherche');
+
+Route::post('/detailssearch', 'AccueilController@searched')->name('detailssearch');

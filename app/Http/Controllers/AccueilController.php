@@ -33,7 +33,7 @@ class AccueilController extends Controller
 
 
     public function recherche(Request $data){
-        $films = Tmdb::getSearchApi()->searchMovies($data['query']);
+        $films = Tmdb::getSearchApi()->searchMovies($data['query'], array("language"=>"fr"));
         $resultats = $films['results'];
 
 
@@ -46,6 +46,14 @@ class AccueilController extends Controller
 
     }
 
+
+    public function searched(Request $request){
+
+        $input = $request->all();
+
+        return $input;
+
+    }
 
     /**
      * Show the form for creating a new resource.
