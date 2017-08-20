@@ -22,6 +22,9 @@ h1.titrelogo{
   font-family:Inconsolata, sans-serif;
   color:#e2625b !important;
   font-size: 1.92em;
+  letter-spacing: 0.15rem;
+  font-weight: bold;
+
 }
 
 .logo-text-group{
@@ -52,6 +55,13 @@ h1.titrelogo{
   box-shadow: none;
 
 }
+.section.filmsfront {
+  padding: 0px;
+}
+.column.affiche {
+  padding: 0px;
+  display:flex;justify-content:center;align-items:center;
+}
 
 .filmsfront{
   background: #f5f7f6;
@@ -61,7 +71,50 @@ h1.titrelogo{
 .filmsfront, h2.title {
   color: #e2625b;
 }
+.affiche {
+  position: relative;
+}
+.logosmall {
+  max-height: 5rem;
+}
+img.logosmall{
+  max-width: 4rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
 
+.logo{
+  display: flex;
+  justify-content:center;align-items:center;
+  z-index: 5;
+}
+.logo-text-group {
+  margin-left: 1rem;
+}
+
+form.headerlogo{
+  width:80%;
+}
+
+input.headerlogo{
+  background: transparent;
+  border:1px solid #e2625b;
+}
+button.favhover {
+  position: absolute;
+  bottom: 1rem;
+  right: 0.25rem;
+  box-shadow: 0 1px 2px 0px #332538, 0 3px 1px 0px #4c3754;
+  color: #f5554c;
+  background: rgba(255, 255, 255, 0.25);
+  font-size: 2rem;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  width:50px;
+  height:50px;
+  line-height:50px;   text-align:center;
+  border: none;
+}
 
 .autocomplete-suggestions {    color: black; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; border: 1px solid #999; background: #FFF; cursor: default; overflow: auto; -webkit-box-shadow: 1px 4px 3px rgba(50, 50, 50, 0.64); -moz-box-shadow: 1px 4px 3px rgba(50, 50, 50, 0.64); box-shadow: 1px 4px 3px rgba(50, 50, 50, 0.64); }
 .autocomplete-suggestion { padding: 2px 5px; white-space: nowrap; overflow: hidden; }

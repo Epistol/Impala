@@ -92,9 +92,32 @@ window.Vue = __webpack_require__(2);
 
 Vue.component('example', __webpack_require__(4));
 
-var app = new Vue({
-    el: '#app'
-});
+window.onload = function () {
+
+    var example2 = new Vue({
+        el: '#example-2',
+        data: {
+            name: 'Vue.js'
+        },
+        // define methods under the `methods` object
+        methods: {
+            addMovie: function addMovie(event) {
+                // `this` inside methods points to the Vue instance
+                alert('COUCOU ! ' + event + '!');
+                $.ajax({
+                    url: 'post/post_vote_up',
+                    type: 'POST',
+                    data: event,
+                    contentType: "multipart/form-data",
+                    processData: false,
+                    error: function error(event2) {
+                        alert('Section created :)' + event);
+                    }
+                });
+            }
+        }
+    });
+};
 
 $(document).ready(function () {
 

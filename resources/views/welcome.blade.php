@@ -1,9 +1,9 @@
 @extends('layouts.general')
-@include('layouts.headerbig')
+
 
 @section('content')
 
-
+    @include('layouts.headerbig')
 
 
         <div class="section">

@@ -16,10 +16,31 @@ window.Vue = require('vue');
 
 Vue.component('example', require('./components/Example.vue'));
 
-const app = new Vue({
-    el: '#app'
-});
 
+window.onload = function () {
+
+var example2 = new Vue({
+    el: '#example-2',
+    data: {
+        name: 'Vue.js'
+    },
+    // define methods under the `methods` object
+    methods: {
+        addMovie: function (event) {
+            // `this` inside methods points to the Vue instance
+            alert('COUCOU ! ' + event + '!');
+            $.ajax({
+                url:'post/post_vote_up',
+                type:'POST',
+                data:event,
+                contentType:"multipart/form-data",
+                processData:false,
+                error:function(event2){alert('Section created :)' + event)}
+            });
+        }
+    }
+});
+};
 
 $(document).ready(function() {
 

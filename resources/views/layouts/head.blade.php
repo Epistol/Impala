@@ -45,6 +45,7 @@
     function onSubmit(token) {
         document.getElementById("form-captcha").submit();
     }
+
 </script>
 
 <script

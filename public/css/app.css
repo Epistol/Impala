@@ -10072,6 +10072,8 @@ h1.titrelogo {
   font-family: Inconsolata, sans-serif;
   color: #e2625b !important;
   font-size: 1.92em;
+  letter-spacing: 0.15rem;
+  font-weight: bold;
 }
 
 .logo-text-group {
@@ -10105,6 +10107,23 @@ h1.titrelogo {
   box-shadow: none;
 }
 
+.section.filmsfront {
+  padding: 0px;
+}
+
+.column.affiche {
+  padding: 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
 .filmsfront {
   background: #f5f7f6;
   color: #332538;
@@ -10113,6 +10132,63 @@ h1.titrelogo {
 .filmsfront,
 h2.title {
   color: #e2625b;
+}
+
+.affiche {
+  position: relative;
+}
+
+.logosmall {
+  max-height: 5rem;
+}
+
+img.logosmall {
+  max-width: 4rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  z-index: 5;
+}
+
+.logo-text-group {
+  margin-left: 1rem;
+}
+
+form.headerlogo {
+  width: 80%;
+}
+
+input.headerlogo {
+  background: transparent;
+  border: 1px solid #e2625b;
+}
+
+button.favhover {
+  position: absolute;
+  bottom: 1rem;
+  right: 0.25rem;
+  -webkit-box-shadow: 0 1px 2px 0px #332538, 0 3px 1px 0px #4c3754;
+          box-shadow: 0 1px 2px 0px #332538, 0 3px 1px 0px #4c3754;
+  color: #f5554c;
+  background: rgba(255, 255, 255, 0.25);
+  font-size: 2rem;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  border: none;
 }
 
 .autocomplete-suggestions {
