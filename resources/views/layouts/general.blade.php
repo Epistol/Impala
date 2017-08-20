@@ -4,6 +4,7 @@
 @include('layouts.head')
 </head>
 <body>
+
 <div class="apps">
     @yield('content')
 </div>

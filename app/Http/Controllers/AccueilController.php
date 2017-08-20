@@ -51,7 +51,14 @@ class AccueilController extends Controller
 
         $input = $request->all();
 
-        return $input;
+        if($input['id_movie'] == NULL){
+            return "Pas trouvé :/ ";
+        }
+        else {
+
+            $films = Tmdb::getMoviesApi()->getMovie($input['id_movie'], array("language"=>"fr"));
+            return view('detail')->with('film', $films);
+        }
 
     }
 
