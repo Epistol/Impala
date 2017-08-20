@@ -19,27 +19,37 @@ Vue.component('example', require('./components/Example.vue'));
 
 window.onload = function () {
 
-var example2 = new Vue({
-    el: '#example-2',
-    data: {
-        name: 'Vue.js'
-    },
-    // define methods under the `methods` object
-    methods: {
-        addMovie: function (event) {
-            // `this` inside methods points to the Vue instance
-            alert('COUCOU ! ' + event + '!');
-            $.ajax({
-                url:'post/post_vote_up',
-                type:'POST',
-                data:event,
-                contentType:"multipart/form-data",
-                processData:false,
-                error:function(event2){alert('Section created :)' + event)}
-            });
+    var example2 = new Vue({
+        el: '#example-2',
+        data: {
+            name: 'Vue.js'
+        },
+        // define methods under the `methods` object
+        methods: {
+            addMovie: function (event) {
+
+                var a = [];
+                if (localStorage.getItem("film") === null) {
+                    console.log("N'extiste pas");
+                    a.push(event);
+                    localStorage.setItem('film', JSON.stringify(a));
+                }
+                else {
+                    a = JSON.parse(localStorage.getItem('film'));
+                    for (i = 0; i < a.length; i++) {
+                        if (Object.is(a[i], event)) {
+                            return true;
+                        }
+                    }
+                    a.push(event);
+                    localStorage.setItem('film', JSON.stringify(a));
+                }
+
+
+
+            }
         }
-    }
-});
+    });
 };
 
 $(document).ready(function() {
@@ -49,9 +59,16 @@ $(document).ready(function() {
         serviceUrl: '/api/filmsrecherche',
         paramName: 'query',
         onSelect: function (suggestion) {
-               $("#id_movie").val(suggestion.data); // save selected id to hidden input
+            $("#id_movie").val(suggestion.data); // save selected id to hidden input
 
         }
     });
 
+
+
 });
+
+$(window).unload(function(){
+    localStorage.film=undefined;
+});
+

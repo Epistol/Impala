@@ -3,28 +3,30 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Tmdb\Laravel\Facades\Tmdb;
 
 class APIController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        return view('api.autocomplete');
-    }
+
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @param Request $data
+     * @return array
      */
-    public function create()
-    {
-        //
+    public function recherche(Request $data){
+        $films = Tmdb::getSearchApi()->searchMovies($data['query'], array("language"=>"fr"));
+        $resultats = $films['results'];
+
+
+        foreach ($resultats as $film){
+            $contenudonnees[] = ['value' => $film["title"], 'data' => $film["id"]];
+        }
+        $contenu = array('query' => $data['query'], "suggestions" => $contenudonnees) ;
+
+        return $contenu;
+
     }
+
 
     /**
      * Store a newly created resource in storage.

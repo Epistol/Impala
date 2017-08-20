@@ -68,7 +68,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(1);
-module.exports = __webpack_require__(8);
+module.exports = __webpack_require__(2);
 
 
 /***/ }),
@@ -82,7 +82,7 @@ module.exports = __webpack_require__(8);
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-window.Vue = __webpack_require__(2);
+window.Vue = __webpack_require__(7);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -90,7 +90,7 @@ window.Vue = __webpack_require__(2);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example', __webpack_require__(4));
+Vue.component('example', __webpack_require__(9));
 
 window.onload = function () {
 
@@ -102,18 +102,22 @@ window.onload = function () {
         // define methods under the `methods` object
         methods: {
             addMovie: function addMovie(event) {
-                // `this` inside methods points to the Vue instance
-                alert('COUCOU ! ' + event + '!');
-                $.ajax({
-                    url: 'post/post_vote_up',
-                    type: 'POST',
-                    data: event,
-                    contentType: "multipart/form-data",
-                    processData: false,
-                    error: function error(event2) {
-                        alert('Section created :)' + event);
+
+                var a = [];
+                if (localStorage.getItem("film") === null) {
+                    console.log("N'extiste pas");
+                    a.push(event);
+                    localStorage.setItem('film', JSON.stringify(a));
+                } else {
+                    a = JSON.parse(localStorage.getItem('film'));
+                    for (i = 0; i < a.length; i++) {
+                        if (Object.is(a[i], event)) {
+                            return true;
+                        }
                     }
-                });
+                    a.push(event);
+                    localStorage.setItem('film', JSON.stringify(a));
+                }
             }
         }
     });
@@ -130,8 +134,22 @@ $(document).ready(function () {
     });
 });
 
+$(window).unload(function () {
+    localStorage.film = undefined;
+});
+
 /***/ }),
 /* 2 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 3 */,
+/* 4 */,
+/* 5 */,
+/* 6 */,
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10223,10 +10241,10 @@ Vue$3.compile = compileToFunctions;
 
 module.exports = Vue$3;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(8)))
 
 /***/ }),
-/* 3 */
+/* 8 */
 /***/ (function(module, exports) {
 
 var g;
@@ -10253,15 +10271,15 @@ module.exports = g;
 
 
 /***/ }),
-/* 4 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var Component = __webpack_require__(5)(
+var Component = __webpack_require__(10)(
   /* script */
-  __webpack_require__(6),
+  __webpack_require__(11),
   /* template */
-  __webpack_require__(7),
+  __webpack_require__(12),
   /* styles */
   null,
   /* scopeId */
@@ -10293,7 +10311,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 5 */
+/* 10 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -10390,7 +10408,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 6 */
+/* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10419,7 +10437,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 7 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -10446,12 +10464,6 @@ if (false) {
      require("vue-hot-reload-api").rerender("data-v-5dfb6e20", module.exports)
   }
 }
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

@@ -12,8 +12,9 @@ class AccueilController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+
         $topmovie = $this->topmovies();
 
         $datas = array('topmovies' => $topmovie["results"], );
@@ -32,19 +33,6 @@ class AccueilController extends Controller
     }
 
 
-    public function recherche(Request $data){
-        $films = Tmdb::getSearchApi()->searchMovies($data['query'], array("language"=>"fr"));
-        $resultats = $films['results'];
-
-
-        foreach ($resultats as $film){
-            $contenudonnees[] = ['value' => $film["title"], 'data' => $film["id"]];
-        }
-        $contenu = array('query' => $data['query'], "suggestions" => $contenudonnees) ;
-
-       return $contenu;
-
-    }
 
 
     public function searched(Request $request){
