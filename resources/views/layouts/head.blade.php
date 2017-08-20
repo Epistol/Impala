@@ -24,7 +24,101 @@
 
 <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
 <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script>
+
 <script>
+    /* Set the width of the side navigation to 250px */
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+        document.getElementById("myCanvasNav").style.width = "100%";
+        document.getElementById("myCanvasNav").style.height = "100%";
+        document.getElementById("myCanvasNav").style.opacity = "0.8";
+
+
+    }
+
+    /* Set the width of the side navigation to 0 */
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+        document.getElementById("myCanvasNav").style.width = "0%";
+        document.getElementById("myCanvasNav").style.height = "0%";
+        document.getElementById("myCanvasNav").style.opacity = "0";
+
+    }
+
+    // ANGULAR GET ITEMS FROM LOCAL
+
+
+    var sampleApp = angular.module('sampleApp', [], function($interpolateProvider) {
+        $interpolateProvider.startSymbol('<%');
+        $interpolateProvider.endSymbol('%>');
+    });
+
+
+
+
+    var app = angular.module('Employees', ['storageService']);
+
+    // Create the Controller
+    app.controller('EmployeesController', ['$scope', 'getLocalStorage', function ($scope, getLocalStorage) {
+        $scope.appTitle = "LocalStorage Demo";
+        $scope.appHeadline = "AngularJS and HTML5";
+
+        //Read the Employee List from LocalStorage
+        $scope.employees = getLocalStorage.getEmployees();
+
+        //Count the Employee List
+        $scope.count = $scope.employees.length;
+
+
+        //Add Employee - using AngularJS push to add Employee in the Employee Object
+        //Call Update Employee to update the locally stored Employee List
+        //Reset the AngularJS Employee scope
+        //Update the Count
+        $scope.addEmployee = function () {
+            $scope.employees.push({ 'empno': $scope.empno, 'empname': $scope.empname, 'empsalary': $scope.empsalary });
+            getLocalStorage.updateEmployees($scope.employees);
+            $scope.empno = '';
+            $scope.empname = '';
+            $scope.empsalary = '';
+            $scope.count = $scope.employees.length;
+        };
+
+        //Delete Employee - Using AngularJS splice to remove the emp row from the Employee list
+        //All the Update Employee to update the locally stored Employee List
+        //Update the Count
+        $scope.deleteEmployee = function (emp) {
+            $scope.employees.splice($scope.employees.indexOf(emp), 1);
+            getLocalStorage.updateEmployees($scope.employees);
+            $scope.count = $scope.employees.length;
+        };
+    }]);
+
+    //Create the Storage Service Module
+    //Create getLocalStorage service to access UpdateEmployees and getEmployees method
+    var storageService = angular.module('storageService', []);
+    storageService.factory('getLocalStorage', function () {
+        var employeeList = {};
+        return {
+            list: employeeList,
+            updateEmployees: function (EmployeesArr) {
+                if (window.localStorage && EmployeesArr) {
+                    //Local Storage to add Data
+                    localStorage.setItem("employees", angular.toJson(EmployeesArr));
+                }
+                employeeList = EmployeesArr;
+
+            },
+            getEmployees: function () {
+                //Get data from Local Storage
+                employeeList = angular.fromJson(localStorage.getItem("employees"));
+                return employeeList ? employeeList : [];
+            }
+        };
+
+    });
+
+
     window.addEventListener("load", function(){
         window.cookieconsent.initialise({
             "palette": {

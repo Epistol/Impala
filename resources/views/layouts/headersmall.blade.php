@@ -1,3 +1,11 @@
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <p>Ma liste de films</p>
+</div>
+
+
+<div id="myCanvasNav" class="overlay3" onclick="closeNav()"></div>
+
 
 <div class="headersection">
     <nav class="">
@@ -21,9 +29,12 @@
                 </form>
             </div>
             <div class="column logo">
-                <p>Ma liste</p>
+                <span onclick="openNav()">Ma liste</span>
+
             </div>
         </div>
     </nav>
 
 </div>
+
+

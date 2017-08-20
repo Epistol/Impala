@@ -134,10 +134,6 @@ $(document).ready(function () {
     });
 });
 
-$(window).unload(function () {
-    localStorage.film = undefined;
-});
-
 /***/ }),
 /* 2 */
 /***/ (function(module, exports) {
