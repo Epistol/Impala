@@ -6,6 +6,7 @@
     @include('layouts.headersmall')
 
 
+
     <div id="modifiersDiv"></div>
 
     <div class="section filmsfront">
@@ -43,8 +44,6 @@
         </div>
 
     </div>
-
-
 
 
 @endsection
